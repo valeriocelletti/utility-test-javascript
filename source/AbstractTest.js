@@ -109,7 +109,7 @@ define(["weswit/Inheritance","weswit/EventDispatcher","weswit/LoggerManager"],
       /**
        * Fired when the test is completed.
        */
-      onTestCompleted:function() {},
+      onTestCompleted:function() {}
   };
   
   
