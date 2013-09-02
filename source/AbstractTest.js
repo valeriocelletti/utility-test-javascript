@@ -1,0 +1,102 @@
+define(["weswit/Inheritance","weswit/EventDispatcher","weswit/LoggerManager"], 
+    function(Inheritance,EventDispatcher,LoggerManager) {
+  
+  /**
+   * Constructor for AbstractTest, it simply calls this.initDispatcher()
+   * @constructor
+   * 
+   * @exports AbstractTest
+   * @class AbstractTest is the class to be extended to to run a single test. AbstractTest instances are supposed to be
+   * executed through {@link TestRunner}
+   * @extends EventDispatcher
+   * 
+   * @example
+   * define(["MyClass","ASSERT","Inheritance","AbstractTest"],
+   *  function(MyClass,ASSERT,Inheritance,AbstractTest) {
+   * 
+   *  var MyClassTest(p1,p2,expected) {
+   *    //store input somewhere
+   *  }
+   * 
+   *  MyClassTest.getInstances = function() {
+   *    return [new MyClassTest(0,0,0),
+   *            new MyClassTest(0,1,1),
+   *            new MyClassTest(1,1,10)];
+   *  };
+   *  
+   *  MyClassTest.prototype = {
+   *    start: function() {
+   *      //use input to test MyClass
+   *      //use ASSERT to verify test conditions
+   *      
+   *      //don't forget to call end. 
+   *      //It can also be called on a timeout 
+   *      this.end();
+   *    }
+   *  }
+   * 
+   *  Inheritance(MyClassTest,AbstractTest);
+   *  return MyClassTest;
+   * });
+   */
+  var AbstractTest = function() {
+    this.initDispatcher();
+  };
+  
+  /**
+   * @type LoggerProxy 
+   * A static logger instance that can be used for the test logging.
+   */
+  AbstractTest.testLogger = LoggerManager.getLoggerProxy("lightstreamer.test");
+  
+  /**
+   * Static method that may be reimplemented to return a list of AbstractTest 
+   * instances to be run
+   */
+  AbstractTest.getInstances = function() {
+    return [];
+  };
+  
+  AbstractTest.prototype = {
+      /**
+       * Main method to be reimplemented. When called the current test should be
+       * executed and then the {@link end} method should be called. Note that end
+       * can also be called asynchronously (e.g.: you can use this class
+       * to run end-to-end tests)
+       */
+      start:function() { //reimplement this method
+        //do something then call end
+        //this.end();
+      },
+      
+      /**
+       * Method to be called once the test is completed.
+       */
+      end: function() {
+        this.dispatchEvent("onTestCompleted");
+      }
+  };
+  
+  Inheritance(AbstractTest,EventDispatcher);
+  
+  
+  /**
+   * Empty constructor.
+   * @constructor
+   * 
+   * @exports AbstractTestListener
+   * @class The interface to be implemented to listen to the AbstractTest class.
+   * There is generally no need to implement this interface as it is implemented 
+   * by the {@link TestRunner} class.
+   */
+  var AbstractTestListener = function() {};
+  AbstractTestListener.prototype = {
+      /**
+       * Fired when the test is completed.
+       */
+      onTestCompleted:function() {},
+  };
+  
+  
+  return AbstractTest;
+});
