@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-define(["weswit/Inheritance","weswit/EventDispatcher","./ASSERT"], 
+define(["Inheritance","EventDispatcher","./ASSERT"], 
     function(Inheritance,EventDispatcher,ASSERT) {
 
   /**
