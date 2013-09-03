@@ -15,9 +15,9 @@
     },
     
     paths: {
-        "weswit/Inheritance": "empty:",
-        "weswit/EventDispatcher": "empty:",
-        "weswit/LoggerManager": "empty:",
+        "Inheritance": "empty:",
+        "EventDispatcher": "empty:",
+        "LoggerManager": "empty:",
         "Inheritance": "empty:"
     },
     
