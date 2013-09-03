@@ -92,6 +92,9 @@ define(["weswit/Inheritance","weswit/EventDispatcher","weswit/LoggerManager"],
       }
   };
   
+  AbstractTest.prototype["start"] = AbstractTest.prototype.start;
+  AbstractTest.prototype["end"] = AbstractTest.prototype.end;
+  
   Inheritance(AbstractTest,EventDispatcher);
   
   
