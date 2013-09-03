@@ -62,7 +62,7 @@ define(["weswit/Inheritance","weswit/EventDispatcher","weswit/LoggerManager"],
    * @type LoggerProxy 
    * A static logger instance that can be used for the test logging.
    */
-  AbstractTest.testLogger = LoggerManager.getLoggerProxy("lightstreamer.test");
+  AbstractTest.testLogger = LoggerManager.getLoggerProxy("weswit.test");
   
   /**
    * Static method that may be reimplemented to return a list of AbstractTest 

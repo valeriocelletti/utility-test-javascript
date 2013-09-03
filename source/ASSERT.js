@@ -16,7 +16,7 @@
 define(["weswit/LoggerManager"],
     function(LoggerManager) {
   
-  var logger = LoggerManager.getLoggerProxy("ASSERT");
+  var logger = LoggerManager.getLoggerProxy("weswit.test");
   
   var failures = 0;
   
