@@ -4,3 +4,6 @@ EventDispatcher.prototype.dispatchEvent = function() {};
 
 LoggerManager = {};
 LoggerManager.getLoggerProxy = function() {};
+
+LoggerProxy = {};
+LoggerProxy.logError = function() {};
