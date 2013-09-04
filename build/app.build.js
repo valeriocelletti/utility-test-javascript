@@ -21,6 +21,8 @@
         "Inheritance": "empty:"
     },
     
+    removeCombined: true,
+    
     modules: [
       {
         name: "utility-test",
