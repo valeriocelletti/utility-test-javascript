@@ -93,6 +93,7 @@ define(["Inheritance","EventDispatcher","LoggerManager"],
   
   AbstractTest.prototype["start"] = AbstractTest.prototype.start;
   AbstractTest.prototype["end"] = AbstractTest.prototype.end;
+  AbstractTest["testLogger"] = AbstractTest.testLogger; 
   
   Inheritance(AbstractTest,EventDispatcher);
   
