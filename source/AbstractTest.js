@@ -59,8 +59,7 @@ define(["Inheritance","EventDispatcher","LoggerManager"],
   };
   
   /**
-   * @type LoggerProxy 
-   * A static logger instance that can be used for the test logging.
+   * @property {LoggerProxy} testLogger A static logger instance that can be used for the test logging.
    */
   AbstractTest.testLogger = LoggerManager.getLoggerProxy("weswit.test");
   
