@@ -43,6 +43,14 @@ define(["Inheritance","EventDispatcher","./ASSERT"],
         this.tests.push(test);
         test.addListener(this);
       }, 
+      
+      /**
+       * Returns the total number of queued tests
+       * @returns total number of queued tests
+       */
+      size: function() {
+        return this.tests.length;
+      },
 
       /**
        * Starts running tests.
@@ -86,6 +94,7 @@ define(["Inheritance","EventDispatcher","./ASSERT"],
   TestRunner.prototype["onTestCompleted"] = TestRunner.prototype.onTestCompleted;
   TestRunner.prototype["start"] = TestRunner.prototype.start;
   TestRunner.prototype["pushTest"] = TestRunner.prototype.pushTest;
+  TestRunner.prototype["size"] = TestRunner.prototype.size;
 
   //implements AbstractTestListener
   Inheritance(TestRunner,EventDispatcher,true);
