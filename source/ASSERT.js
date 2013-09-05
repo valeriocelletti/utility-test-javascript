@@ -20,16 +20,19 @@ define(["LoggerManager"],
   
   var failures = 0;
   
+  var VOID = {};
+  
   /**
    * you can use method of ASSERT to verify conditions
    * If a conditions is not met ASSERT.failures is increased
    * and an error log line is printed on the ASSERT category
+   * @exports ASSERT
    */
   var ASSERT = {
     /**
      * The VOID property to be used in various calls
      */
-    "VOID": {},
+    "VOID": VOID,
     
     /**
      * Gets the number of failures. A failure is added
@@ -283,7 +286,7 @@ define(["LoggerManager"],
       var ret = null;
       var exc = null;
       try {
-        if (param !== this.VOID) {
+        if (param !== VOID) {
           ret = obj[method].apply(obj,param);
         } else {
           ret = obj[method]();  
@@ -303,14 +306,14 @@ define(["LoggerManager"],
       }
       
       
-      if (!expectingException && res !== this.VOID) {
+      if (!expectingException && res !== VOID) {
         return this.verifyValue(ret,res,compareFun);
       }
       return true;
     }
     
   };
-
+  
   //closure exports
   ASSERT["getFailures"] = ASSERT.getFailures;
   ASSERT["fail"] = ASSERT.fail;
