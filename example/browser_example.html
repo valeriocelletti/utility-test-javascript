@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="require.js"></script>
+  <script src="utility-toolkit.js"></script>
+  <script src="utility-logging.js"></script>
+  <script src="utility-test.js"></script>
+</head>  
+<body>
+  <script>
+  
+    require(["TestRunner","ASSERT","path/to/Class1Test"], 
+        function(TestRunner,ASSERT,Class1Test) {
+      
+      var mainRunner = new TestRunner();
+      
+      var instances = Class1Test.getInstances();
+      for (var i = 0; i < instances.length; i++) {
+        mainRunner.pushTest(instances[i]);
+      }
+      
+      mainRunner.addListener({
+        onAllTestComplete:function(fails) {
+          if (fails > 0) {
+            //something went wrong, review your code!
+          }
+        },
+       });
+      
+      
+      mainRunner.start();
+	  });
+  
+  </script>
+</body>
+</html>  
