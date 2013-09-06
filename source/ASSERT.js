@@ -59,7 +59,7 @@ define(["LoggerManager"],
      */
     compareArrays: function(arr1,expected,sameOrder) {
       if (arr1.length != expected.length) {
-        this.fail();
+        this.failInternal();
         logger.logError("Wong length!",arr1,expected);
         return false;
       }
@@ -73,7 +73,7 @@ define(["LoggerManager"],
         for (var i=0; i<expected.length; i++) {
           if (!genMap[expected[i]]) {
             logger.logError("Missing from first array",expected[i]);
-            this.fail();
+            this.failInternal();
             return false;
           } else {
             genMap[expected[i]]++;
@@ -83,7 +83,7 @@ define(["LoggerManager"],
         for (var i in genMap) {
           if (genMap[i] == 1) {
             logger.logError("Missing from second array",genMap[i]);
-            this.fail();
+            this.failInternal();
             return false;
           }
         }
@@ -92,7 +92,7 @@ define(["LoggerManager"],
         for (var i=0; i<arr1.length; i++) {
           if(arr1[i] != expected[i]) {
             logger.logError("Wrong  element", arr1[i], expected[i]);
-            this.fail();
+            this.failInternal();
             return false;
           }
         }
@@ -160,7 +160,7 @@ define(["LoggerManager"],
      */
     verifyNotNull: function(val1) {
       if (val1 === null) {
-        this.fail();
+        this.failInternal();
         logger.logError("Not expecting a NULL",val1);
         return false;
       }
@@ -203,7 +203,7 @@ define(["LoggerManager"],
       }
        
       if (!ok) {
-        this.fail();
+        this.failInternal();
         logger.logError("Expecting a different value",val1,val2);
         return false;
       }
@@ -229,7 +229,7 @@ define(["LoggerManager"],
       }
       
       if (!ok) {
-        this.fail();
+        this.failInternal();
         logger.logError("Expecting 2 different values",val1,val2);
         return false;
       }
@@ -245,7 +245,7 @@ define(["LoggerManager"],
      */
     verifyOk: function(val) {
       if (!val) {
-        this.fail();
+        this.failInternal();
         logger.logError("Expecting a valid value");
         return false;
       }
@@ -261,7 +261,7 @@ define(["LoggerManager"],
      */
     verifyNotOk: function(val) {
       if (val) {
-        this.fail();
+        this.failInternal();
         logger.logError("Expecting a not valid value");
         return false;
       }
@@ -273,9 +273,16 @@ define(["LoggerManager"],
      * @returns {Boolean} false is always returned.
      */
     fail: function() {
-      failures++;
       logger.logError("ASSERT failed");
+      this.failInternal();
       return false;
+    },
+    
+    /**
+     * @private
+     */
+    failInternal: function() {
+      failures++;
     },
     
     /**
@@ -300,7 +307,7 @@ define(["LoggerManager"],
       var what = expectingException ? "succes" : "failure";
       var ok = expectingException == flag;
       if (!ok) {
-        this.fail();
+        this.failInternal();
         logger.logError("Unexpected",what,"for",method,param,res,exc);
         return false;
       }
