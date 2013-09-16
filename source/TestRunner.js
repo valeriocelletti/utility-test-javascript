@@ -32,6 +32,7 @@ define(["Inheritance","EventDispatcher","./ASSERT"],
     this.tests = [];
     this.runningTest = -1;
     this.initDispatcher();
+    this.useSynchEvents(true);
   };
   
   TestRunner.prototype = {
@@ -77,6 +78,7 @@ define(["Inheritance","EventDispatcher","./ASSERT"],
         
         this.dispatchEvent("onTestStart",[this.runningTest,this.tests[this.runningTest]]);
         this.tests[this.runningTest].start();
+        
         
       },
       

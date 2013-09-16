@@ -56,6 +56,7 @@ define(["Inheritance","EventDispatcher","LoggerManager"],
    */
   var AbstractTest = function() {
     this.initDispatcher();
+    this.useSynchEvents(true);
   };
   
   /**
