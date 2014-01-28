@@ -25,7 +25,6 @@ define(["Inheritance","EventDispatcher","./ASSERT"],
    * It is the core of the testing project enabling the writing of both sincronous and asynchronous events.
    * <br>It is possible to fill the TestRunner with as many tests as needed before launching it. It extends the EventDispatcher 
    * from utility-toolkit-javascript in order to notify of tests executions the outside code.
-   * @extends AbstractListListener
    * @extends EventDispatcher
    */
   var TestRunner = function() {
